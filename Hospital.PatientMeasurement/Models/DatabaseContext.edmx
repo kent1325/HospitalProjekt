@@ -1,0 +1,534 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HospitalDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="DepartmentID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeePatientDepartments">
+          <Key>
+            <PropertyRef Name="EmployeePatientDepartmentID" />
+          </Key>
+          <Property Name="EmployeePatientDepartmentID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EmployeeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PatientID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DepartmentID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EmployeeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmployeeAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmployeePhoneNumber" Type="int" Nullable="false" />
+          <Property Name="JobTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ThesisID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JobTypes">
+          <Key>
+            <PropertyRef Name="JobTypeID" />
+          </Key>
+          <Property Name="JobTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="JobTypeTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Measurements">
+          <Key>
+            <PropertyRef Name="MeasurementID" />
+          </Key>
+          <Property Name="MeasurementID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MeasurementTime" Type="datetime" Nullable="false" />
+          <Property Name="MeasurementValue" Type="float" Nullable="false" />
+          <Property Name="PatientID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MeasurementTypeID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MeasurementTypes">
+          <Key>
+            <PropertyRef Name="MeasurementTypeID" />
+          </Key>
+          <Property Name="MeasurementTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MeasurementTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Patients">
+          <Key>
+            <PropertyRef Name="PatientID" />
+          </Key>
+          <Property Name="PatientID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PatientName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PatientCPR" Type="nvarchar" MaxLength="11" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Theses">
+          <Key>
+            <PropertyRef Name="ThesisID" />
+          </Key>
+          <Property Name="ThesisID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ThesisTitle" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_EmployeePatientDepartments_dbo_Departments_DepartmentID">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EmployeePatientDepartments" Type="Self.EmployeePatientDepartments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="EmployeePatientDepartments">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_EmployeePatientDepartments_dbo_Employees_EmployeeID">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EmployeePatientDepartments" Type="Self.EmployeePatientDepartments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="EmployeePatientDepartments">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_EmployeePatientDepartments_dbo_Patients_PatientID">
+          <End Role="Patients" Type="Self.Patients" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EmployeePatientDepartments" Type="Self.EmployeePatientDepartments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="PatientID" />
+            </Principal>
+            <Dependent Role="EmployeePatientDepartments">
+              <PropertyRef Name="PatientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Employees_dbo_JobTypes_JobTypeID">
+          <End Role="JobTypes" Type="Self.JobTypes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobTypes">
+              <PropertyRef Name="JobTypeID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="JobTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Employees_dbo_Theses_ThesisID">
+          <End Role="Theses" Type="Self.Theses" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Theses">
+              <PropertyRef Name="ThesisID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="ThesisID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Measurements_dbo_MeasurementTypes_MeasurementTypeID">
+          <End Role="MeasurementTypes" Type="Self.MeasurementTypes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Measurements" Type="Self.Measurements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MeasurementTypes">
+              <PropertyRef Name="MeasurementTypeID" />
+            </Principal>
+            <Dependent Role="Measurements">
+              <PropertyRef Name="MeasurementTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Measurements_dbo_Patients_PatientID">
+          <End Role="Patients" Type="Self.Patients" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Measurements" Type="Self.Measurements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="PatientID" />
+            </Principal>
+            <Dependent Role="Measurements">
+              <PropertyRef Name="PatientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HospitalDatabaseModelStoreContainer">
+          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeePatientDepartments" EntityType="Self.EmployeePatientDepartments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobTypes" EntityType="Self.JobTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Measurements" EntityType="Self.Measurements" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MeasurementTypes" EntityType="Self.MeasurementTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patients" EntityType="Self.Patients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Theses" EntityType="Self.Theses" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_EmployeePatientDepartments_dbo_Departments_DepartmentID" Association="Self.FK_dbo_EmployeePatientDepartments_dbo_Departments_DepartmentID">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="EmployeePatientDepartments" EntitySet="EmployeePatientDepartments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_EmployeePatientDepartments_dbo_Employees_EmployeeID" Association="Self.FK_dbo_EmployeePatientDepartments_dbo_Employees_EmployeeID">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="EmployeePatientDepartments" EntitySet="EmployeePatientDepartments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_EmployeePatientDepartments_dbo_Patients_PatientID" Association="Self.FK_dbo_EmployeePatientDepartments_dbo_Patients_PatientID">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="EmployeePatientDepartments" EntitySet="EmployeePatientDepartments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Employees_dbo_JobTypes_JobTypeID" Association="Self.FK_dbo_Employees_dbo_JobTypes_JobTypeID">
+            <End Role="JobTypes" EntitySet="JobTypes" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Employees_dbo_Theses_ThesisID" Association="Self.FK_dbo_Employees_dbo_Theses_ThesisID">
+            <End Role="Theses" EntitySet="Theses" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Measurements_dbo_MeasurementTypes_MeasurementTypeID" Association="Self.FK_dbo_Measurements_dbo_MeasurementTypes_MeasurementTypeID">
+            <End Role="MeasurementTypes" EntitySet="MeasurementTypes" />
+            <End Role="Measurements" EntitySet="Measurements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Measurements_dbo_Patients_PatientID" Association="Self.FK_dbo_Measurements_dbo_Patients_PatientID">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="Measurements" EntitySet="Measurements" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HospitalDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="DepartmentID" Type="Guid" Nullable="false" />
+          <Property Name="DepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="EmployeePatientDepartments" Relationship="Self.FK_dbo_EmployeePatientDepartments_dbo_Departments_DepartmentID" FromRole="Departments" ToRole="EmployeePatientDepartments" />
+        </EntityType>
+        <EntityType Name="EmployeePatientDepartment">
+          <Key>
+            <PropertyRef Name="EmployeePatientDepartmentID" />
+          </Key>
+          <Property Name="EmployeePatientDepartmentID" Type="Guid" Nullable="false" />
+          <Property Name="EmployeeID" Type="Guid" Nullable="false" />
+          <Property Name="PatientID" Type="Guid" Nullable="false" />
+          <Property Name="DepartmentID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_dbo_EmployeePatientDepartments_dbo_Departments_DepartmentID" FromRole="EmployeePatientDepartments" ToRole="Departments" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_dbo_EmployeePatientDepartments_dbo_Employees_EmployeeID" FromRole="EmployeePatientDepartments" ToRole="Employees" />
+          <NavigationProperty Name="Patient" Relationship="Self.FK_dbo_EmployeePatientDepartments_dbo_Patients_PatientID" FromRole="EmployeePatientDepartments" ToRole="Patients" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Guid" Nullable="false" />
+          <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmployeeAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmployeePhoneNumber" Type="Int32" Nullable="false" />
+          <Property Name="JobTypeID" Type="Guid" Nullable="false" />
+          <Property Name="ThesisID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="EmployeePatientDepartments" Relationship="Self.FK_dbo_EmployeePatientDepartments_dbo_Employees_EmployeeID" FromRole="Employees" ToRole="EmployeePatientDepartments" />
+          <NavigationProperty Name="JobType" Relationship="Self.FK_dbo_Employees_dbo_JobTypes_JobTypeID" FromRole="Employees" ToRole="JobTypes" />
+          <NavigationProperty Name="Thesis" Relationship="Self.FK_dbo_Employees_dbo_Theses_ThesisID" FromRole="Employees" ToRole="Theses" />
+        </EntityType>
+        <EntityType Name="JobType">
+          <Key>
+            <PropertyRef Name="JobTypeID" />
+          </Key>
+          <Property Name="JobTypeID" Type="Guid" Nullable="false" />
+          <Property Name="JobTypeTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_dbo_Employees_dbo_JobTypes_JobTypeID" FromRole="JobTypes" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Measurement">
+          <Key>
+            <PropertyRef Name="MeasurementID" />
+          </Key>
+          <Property Name="MeasurementID" Type="Guid" Nullable="false" />
+          <Property Name="MeasurementTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MeasurementValue" Type="Double" Nullable="false" />
+          <Property Name="PatientID" Type="Guid" Nullable="false" />
+          <Property Name="MeasurementTypeID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="MeasurementType" Relationship="Self.FK_dbo_Measurements_dbo_MeasurementTypes_MeasurementTypeID" FromRole="Measurements" ToRole="MeasurementTypes" />
+          <NavigationProperty Name="Patient" Relationship="Self.FK_dbo_Measurements_dbo_Patients_PatientID" FromRole="Measurements" ToRole="Patients" />
+        </EntityType>
+        <EntityType Name="MeasurementType">
+          <Key>
+            <PropertyRef Name="MeasurementTypeID" />
+          </Key>
+          <Property Name="MeasurementTypeID" Type="Guid" Nullable="false" />
+          <Property Name="MeasurementTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Measurements" Relationship="Self.FK_dbo_Measurements_dbo_MeasurementTypes_MeasurementTypeID" FromRole="MeasurementTypes" ToRole="Measurements" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="PatientID" />
+          </Key>
+          <Property Name="PatientID" Type="Guid" Nullable="false" />
+          <Property Name="PatientName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PatientCPR" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="EmployeePatientDepartments" Relationship="Self.FK_dbo_EmployeePatientDepartments_dbo_Patients_PatientID" FromRole="Patients" ToRole="EmployeePatientDepartments" />
+          <NavigationProperty Name="Measurements" Relationship="Self.FK_dbo_Measurements_dbo_Patients_PatientID" FromRole="Patients" ToRole="Measurements" />
+        </EntityType>
+        <EntityType Name="Thesis">
+          <Key>
+            <PropertyRef Name="ThesisID" />
+          </Key>
+          <Property Name="ThesisID" Type="Guid" Nullable="false" />
+          <Property Name="ThesisTitle" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_dbo_Employees_dbo_Theses_ThesisID" FromRole="Theses" ToRole="Employees" />
+        </EntityType>
+        <Association Name="FK_dbo_EmployeePatientDepartments_dbo_Departments_DepartmentID">
+          <End Role="Departments" Type="Self.Department" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EmployeePatientDepartments" Type="Self.EmployeePatientDepartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="EmployeePatientDepartments">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_EmployeePatientDepartments_dbo_Employees_EmployeeID">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EmployeePatientDepartments" Type="Self.EmployeePatientDepartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="EmployeePatientDepartments">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_EmployeePatientDepartments_dbo_Patients_PatientID">
+          <End Role="Patients" Type="Self.Patient" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EmployeePatientDepartments" Type="Self.EmployeePatientDepartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="PatientID" />
+            </Principal>
+            <Dependent Role="EmployeePatientDepartments">
+              <PropertyRef Name="PatientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Employees_dbo_JobTypes_JobTypeID">
+          <End Role="JobTypes" Type="Self.JobType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobTypes">
+              <PropertyRef Name="JobTypeID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="JobTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Employees_dbo_Theses_ThesisID">
+          <End Role="Theses" Type="Self.Thesis" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Theses">
+              <PropertyRef Name="ThesisID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="ThesisID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Measurements_dbo_MeasurementTypes_MeasurementTypeID">
+          <End Role="MeasurementTypes" Type="Self.MeasurementType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Measurements" Type="Self.Measurement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MeasurementTypes">
+              <PropertyRef Name="MeasurementTypeID" />
+            </Principal>
+            <Dependent Role="Measurements">
+              <PropertyRef Name="MeasurementTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Measurements_dbo_Patients_PatientID">
+          <End Role="Patients" Type="Self.Patient" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Measurements" Type="Self.Measurement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="PatientID" />
+            </Principal>
+            <Dependent Role="Measurements">
+              <PropertyRef Name="PatientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HospitalDatabase" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="EmployeePatientDepartments" EntityType="Self.EmployeePatientDepartment" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="JobTypes" EntityType="Self.JobType" />
+          <EntitySet Name="Measurements" EntityType="Self.Measurement" />
+          <EntitySet Name="MeasurementTypes" EntityType="Self.MeasurementType" />
+          <EntitySet Name="Patients" EntityType="Self.Patient" />
+          <EntitySet Name="Theses" EntityType="Self.Thesis" />
+          <AssociationSet Name="FK_dbo_EmployeePatientDepartments_dbo_Departments_DepartmentID" Association="Self.FK_dbo_EmployeePatientDepartments_dbo_Departments_DepartmentID">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="EmployeePatientDepartments" EntitySet="EmployeePatientDepartments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_EmployeePatientDepartments_dbo_Employees_EmployeeID" Association="Self.FK_dbo_EmployeePatientDepartments_dbo_Employees_EmployeeID">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="EmployeePatientDepartments" EntitySet="EmployeePatientDepartments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_EmployeePatientDepartments_dbo_Patients_PatientID" Association="Self.FK_dbo_EmployeePatientDepartments_dbo_Patients_PatientID">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="EmployeePatientDepartments" EntitySet="EmployeePatientDepartments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Employees_dbo_JobTypes_JobTypeID" Association="Self.FK_dbo_Employees_dbo_JobTypes_JobTypeID">
+            <End Role="JobTypes" EntitySet="JobTypes" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Employees_dbo_Theses_ThesisID" Association="Self.FK_dbo_Employees_dbo_Theses_ThesisID">
+            <End Role="Theses" EntitySet="Theses" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Measurements_dbo_MeasurementTypes_MeasurementTypeID" Association="Self.FK_dbo_Measurements_dbo_MeasurementTypes_MeasurementTypeID">
+            <End Role="MeasurementTypes" EntitySet="MeasurementTypes" />
+            <End Role="Measurements" EntitySet="Measurements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Measurements_dbo_Patients_PatientID" Association="Self.FK_dbo_Measurements_dbo_Patients_PatientID">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="Measurements" EntitySet="Measurements" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HospitalDatabaseModelStoreContainer" CdmEntityContainer="HospitalDatabase">
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="HospitalDatabaseModel.Department">
+              <MappingFragment StoreEntitySet="Departments">
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeePatientDepartments">
+            <EntityTypeMapping TypeName="HospitalDatabaseModel.EmployeePatientDepartment">
+              <MappingFragment StoreEntitySet="EmployeePatientDepartments">
+                <ScalarProperty Name="EmployeePatientDepartmentID" ColumnName="EmployeePatientDepartmentID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="HospitalDatabaseModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="EmployeeAddress" ColumnName="EmployeeAddress" />
+                <ScalarProperty Name="EmployeePhoneNumber" ColumnName="EmployeePhoneNumber" />
+                <ScalarProperty Name="JobTypeID" ColumnName="JobTypeID" />
+                <ScalarProperty Name="ThesisID" ColumnName="ThesisID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobTypes">
+            <EntityTypeMapping TypeName="HospitalDatabaseModel.JobType">
+              <MappingFragment StoreEntitySet="JobTypes">
+                <ScalarProperty Name="JobTypeID" ColumnName="JobTypeID" />
+                <ScalarProperty Name="JobTypeTitle" ColumnName="JobTypeTitle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Measurements">
+            <EntityTypeMapping TypeName="HospitalDatabaseModel.Measurement">
+              <MappingFragment StoreEntitySet="Measurements">
+                <ScalarProperty Name="MeasurementID" ColumnName="MeasurementID" />
+                <ScalarProperty Name="MeasurementTime" ColumnName="MeasurementTime" />
+                <ScalarProperty Name="MeasurementValue" ColumnName="MeasurementValue" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="MeasurementTypeID" ColumnName="MeasurementTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MeasurementTypes">
+            <EntityTypeMapping TypeName="HospitalDatabaseModel.MeasurementType">
+              <MappingFragment StoreEntitySet="MeasurementTypes">
+                <ScalarProperty Name="MeasurementTypeID" ColumnName="MeasurementTypeID" />
+                <ScalarProperty Name="MeasurementTypeName" ColumnName="MeasurementTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patients">
+            <EntityTypeMapping TypeName="HospitalDatabaseModel.Patient">
+              <MappingFragment StoreEntitySet="Patients">
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+                <ScalarProperty Name="PatientCPR" ColumnName="PatientCPR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Theses">
+            <EntityTypeMapping TypeName="HospitalDatabaseModel.Thesis">
+              <MappingFragment StoreEntitySet="Theses">
+                <ScalarProperty Name="ThesisID" ColumnName="ThesisID" />
+                <ScalarProperty Name="ThesisTitle" ColumnName="ThesisTitle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
