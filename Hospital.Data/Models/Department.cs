@@ -13,6 +13,11 @@ namespace Hospital.Data.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid DepartmentID { get; set; }
+
+        [Required(ErrorMessage = "{0} is a required field")]
+        [DataType(DataType.Text)]
+        [StringLength(maximumLength: 50, MinimumLength = 1, 
+            ErrorMessage = "The property {0} should have {1} maximum characters and {2} minimum characters")]
         public string DepartmentName { get; set; }
 
         public virtual ICollection<EmployeePatientDepartment> EmployeePatientDepartments { get; set; }

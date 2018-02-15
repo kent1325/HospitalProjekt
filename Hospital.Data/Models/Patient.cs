@@ -13,8 +13,18 @@ namespace Hospital.Data.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid PatientID { get; set; }
+
+        [Required(ErrorMessage = "{0} is a required field")]
+        [DataType(DataType.Text)]
+        [StringLength(maximumLength: 50, MinimumLength = 1,
+            ErrorMessage = "The property {0} should have {1} maximum characters and {2} minimum characters")]
         public string PatientName { get; set; }
-        public int PatientCPR { get; set; }
+
+        [Required(ErrorMessage = "{0} is a required field")]
+        [StringLength(maximumLength: 11, MinimumLength = 11,
+            ErrorMessage = "The property {0} should have {2} characters")]
+        [RegularExpression("\\d{6}-\\d{4}", ErrorMessage = "{0} must be formatted correctly (012345-6789")]
+        public string PatientCPR { get; set; }
 
         public virtual ICollection<EmployeePatientDepartment> EmployeePatientDepartments { get; set; }
 

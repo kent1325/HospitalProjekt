@@ -14,13 +14,20 @@ namespace Hospital.Data.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid EmployeeID { get; set; }
 
+        [Required(ErrorMessage = "{0} is a required field")]
         [DataType(DataType.Text)]
-        [Required(ErrorMessage = "Employee {0} is required")]
+        [StringLength(maximumLength: 50, MinimumLength = 1,
+            ErrorMessage = "The property {0} should have {1} maximum characters and {2} minimum characters")]
         public string EmployeeName { get; set; }
 
+        [Required(ErrorMessage = "{0} is a required field")]
         [DataType(DataType.Text)]
+        [StringLength(maximumLength: 50, MinimumLength = 1,
+            ErrorMessage = "The property {0} should have {1} maximum characters and {2} minimum characters")]
+        [RegularExpression("^((?!^Address$)[0-9A-Za-z #.,])+$", ErrorMessage = "{0} must be properly formatted.")]
         public string EmployeeAddress { get; set; }
 
+        [Required(ErrorMessage = "{0} is a required field")]
         [DataType(DataType.PhoneNumber)]
         [Phone]
         public int EmployeePhoneNumber { get; set; }
