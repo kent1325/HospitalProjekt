@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Hospital.Data.Models
 {
+    [Table("Employees")]
     public class Employee
     {
         [Key]

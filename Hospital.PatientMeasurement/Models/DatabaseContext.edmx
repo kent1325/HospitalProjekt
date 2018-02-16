@@ -64,7 +64,7 @@
           <Property Name="PatientName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PatientCPR" Type="nvarchar" MaxLength="11" Nullable="false" />
         </EntityType>
-        <EntityType Name="Theses">
+        <EntityType Name="Thesises">
           <Key>
             <PropertyRef Name="ThesisID" />
           </Key>
@@ -127,13 +127,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_Employees_dbo_Theses_ThesisID">
-          <End Role="Theses" Type="Self.Theses" Multiplicity="1">
+        <Association Name="FK_dbo_Employees_dbo_Thesises_ThesisID">
+          <End Role="Thesises" Type="Self.Thesises" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Theses">
+            <Principal Role="Thesises">
               <PropertyRef Name="ThesisID" />
             </Principal>
             <Dependent Role="Employees">
@@ -177,7 +177,7 @@
           <EntitySet Name="Measurements" EntityType="Self.Measurements" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MeasurementTypes" EntityType="Self.MeasurementTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Patients" EntityType="Self.Patients" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Theses" EntityType="Self.Theses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Thesises" EntityType="Self.Thesises" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_EmployeePatientDepartments_dbo_Departments_DepartmentID" Association="Self.FK_dbo_EmployeePatientDepartments_dbo_Departments_DepartmentID">
             <End Role="Departments" EntitySet="Departments" />
             <End Role="EmployeePatientDepartments" EntitySet="EmployeePatientDepartments" />
@@ -194,8 +194,8 @@
             <End Role="JobTypes" EntitySet="JobTypes" />
             <End Role="Employees" EntitySet="Employees" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_Employees_dbo_Theses_ThesisID" Association="Self.FK_dbo_Employees_dbo_Theses_ThesisID">
-            <End Role="Theses" EntitySet="Theses" />
+          <AssociationSet Name="FK_dbo_Employees_dbo_Thesises_ThesisID" Association="Self.FK_dbo_Employees_dbo_Thesises_ThesisID">
+            <End Role="Thesises" EntitySet="Thesises" />
             <End Role="Employees" EntitySet="Employees" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_Measurements_dbo_MeasurementTypes_MeasurementTypeID" Association="Self.FK_dbo_Measurements_dbo_MeasurementTypes_MeasurementTypeID">
@@ -244,7 +244,7 @@
           <Property Name="ThesisID" Type="Guid" Nullable="false" />
           <NavigationProperty Name="EmployeePatientDepartments" Relationship="Self.FK_dbo_EmployeePatientDepartments_dbo_Employees_EmployeeID" FromRole="Employees" ToRole="EmployeePatientDepartments" />
           <NavigationProperty Name="JobType" Relationship="Self.FK_dbo_Employees_dbo_JobTypes_JobTypeID" FromRole="Employees" ToRole="JobTypes" />
-          <NavigationProperty Name="Thesis" Relationship="Self.FK_dbo_Employees_dbo_Theses_ThesisID" FromRole="Employees" ToRole="Theses" />
+          <NavigationProperty Name="Thesis" Relationship="Self.FK_dbo_Employees_dbo_Thesises_ThesisID" FromRole="Employees" ToRole="Thesises" />
         </EntityType>
         <EntityType Name="JobType">
           <Key>
@@ -290,7 +290,7 @@
           </Key>
           <Property Name="ThesisID" Type="Guid" Nullable="false" />
           <Property Name="ThesisTitle" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Employees" Relationship="Self.FK_dbo_Employees_dbo_Theses_ThesisID" FromRole="Theses" ToRole="Employees" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_dbo_Employees_dbo_Thesises_ThesisID" FromRole="Thesises" ToRole="Employees" />
         </EntityType>
         <Association Name="FK_dbo_EmployeePatientDepartments_dbo_Departments_DepartmentID">
           <End Role="Departments" Type="Self.Department" Multiplicity="1">
@@ -348,13 +348,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_Employees_dbo_Theses_ThesisID">
-          <End Role="Theses" Type="Self.Thesis" Multiplicity="1">
+        <Association Name="FK_dbo_Employees_dbo_Thesises_ThesisID">
+          <End Role="Thesises" Type="Self.Thesis" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Theses">
+            <Principal Role="Thesises">
               <PropertyRef Name="ThesisID" />
             </Principal>
             <Dependent Role="Employees">
@@ -398,7 +398,7 @@
           <EntitySet Name="Measurements" EntityType="Self.Measurement" />
           <EntitySet Name="MeasurementTypes" EntityType="Self.MeasurementType" />
           <EntitySet Name="Patients" EntityType="Self.Patient" />
-          <EntitySet Name="Theses" EntityType="Self.Thesis" />
+          <EntitySet Name="Thesises" EntityType="Self.Thesis" />
           <AssociationSet Name="FK_dbo_EmployeePatientDepartments_dbo_Departments_DepartmentID" Association="Self.FK_dbo_EmployeePatientDepartments_dbo_Departments_DepartmentID">
             <End Role="Departments" EntitySet="Departments" />
             <End Role="EmployeePatientDepartments" EntitySet="EmployeePatientDepartments" />
@@ -415,8 +415,8 @@
             <End Role="JobTypes" EntitySet="JobTypes" />
             <End Role="Employees" EntitySet="Employees" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_Employees_dbo_Theses_ThesisID" Association="Self.FK_dbo_Employees_dbo_Theses_ThesisID">
-            <End Role="Theses" EntitySet="Theses" />
+          <AssociationSet Name="FK_dbo_Employees_dbo_Thesises_ThesisID" Association="Self.FK_dbo_Employees_dbo_Thesises_ThesisID">
+            <End Role="Thesises" EntitySet="Thesises" />
             <End Role="Employees" EntitySet="Employees" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_Measurements_dbo_MeasurementTypes_MeasurementTypeID" Association="Self.FK_dbo_Measurements_dbo_MeasurementTypes_MeasurementTypeID">
@@ -500,9 +500,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Theses">
+          <EntitySetMapping Name="Thesises">
             <EntityTypeMapping TypeName="HospitalDatabaseModel.Thesis">
-              <MappingFragment StoreEntitySet="Theses">
+              <MappingFragment StoreEntitySet="Thesises">
                 <ScalarProperty Name="ThesisID" ColumnName="ThesisID" />
                 <ScalarProperty Name="ThesisTitle" ColumnName="ThesisTitle" />
               </MappingFragment>

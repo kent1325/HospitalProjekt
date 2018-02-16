@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Hospital.Data.Models
 {
+    [Table("MeasurementTypes")]
     public class MeasurementType
     {
         [Key]

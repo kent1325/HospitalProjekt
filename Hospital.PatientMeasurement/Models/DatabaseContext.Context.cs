@@ -32,6 +32,6 @@ namespace Hospital.PatientMeasurement.Models
         public virtual DbSet<Measurement> Measurements { get; set; }
         public virtual DbSet<MeasurementType> MeasurementTypes { get; set; }
         public virtual DbSet<Patient> Patients { get; set; }
-        public virtual DbSet<Thesis> Theses { get; set; }
+        public virtual DbSet<Thesis> Thesises { get; set; }
     }
 }

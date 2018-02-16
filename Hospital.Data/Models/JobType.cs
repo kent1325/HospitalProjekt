@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Hospital.Data.Models
 {
+    [Table("JobTypes")]
     public class JobType
     {
         [Key]

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Hospital.Data.Models
 {
+    [Table("Measurements")]
     public class Measurement
     {
         [Key]
