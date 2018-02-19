@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital.Data", "Hospital.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital.PatientMeasurement", "Hospital.PatientMeasurement\Hospital.PatientMeasurement.csproj", "{7F6EB6DD-4B40-4342-930B-2A082B04C52E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalWebAplication", "HospitalWebAplication\HospitalWebAplication.csproj", "{881CAC6A-F852-4962-BF43-A009991530A0}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{7F6EB6DD-4B40-4342-930B-2A082B04C52E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F6EB6DD-4B40-4342-930B-2A082B04C52E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F6EB6DD-4B40-4342-930B-2A082B04C52E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{881CAC6A-F852-4962-BF43-A009991530A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{881CAC6A-F852-4962-BF43-A009991530A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{881CAC6A-F852-4962-BF43-A009991530A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{881CAC6A-F852-4962-BF43-A009991530A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
