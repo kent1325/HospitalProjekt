@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="13d6c55d4d3e4ab8b1b87cb9fa858163" Name="Diagram1">
+        <EntityTypeShape EntityType="HospitalDatabaseModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDatabaseModel.Departments" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDatabaseModel.EmployeePatientDepartments" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDatabaseModel.Employees" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDatabaseModel.JobTypes" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDatabaseModel.Measurements" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDatabaseModel.MeasurementTypes" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDatabaseModel.Patients" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDatabaseModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDatabaseModel.Thesises" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <AssociationConnector Association="HospitalDatabaseModel.FK_dbo_EmployeePatientDepartments_dbo_Departments_DepartmentID" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDatabaseModel.FK_dbo_EmployeePatientDepartments_dbo_Employees_EmployeeID" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDatabaseModel.FK_dbo_EmployeePatientDepartments_dbo_Patients_PatientID" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDatabaseModel.FK_dbo_Employees_dbo_JobTypes_JobTypeID" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDatabaseModel.FK_dbo_Employees_dbo_Thesises_ThesisID" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDatabaseModel.FK_dbo_Measurements_dbo_MeasurementTypes_MeasurementTypeID" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDatabaseModel.FK_dbo_Measurements_dbo_Patients_PatientID" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

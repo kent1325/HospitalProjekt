@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Hospital.WebClient.Employees>
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeePhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobTypes.JobTypeTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Thesises.ThesisTitle)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeePhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobTypes.JobTypeTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Thesises.ThesisTitle)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EmployeeID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EmployeeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EmployeeID })
+        </td>
+    </tr>
+}
+
+</table>
