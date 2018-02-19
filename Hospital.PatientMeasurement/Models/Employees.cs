@@ -12,22 +12,24 @@ namespace Hospital.PatientMeasurement.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Patient
+    public partial class Employees
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Patient()
+        public Employees()
         {
-            this.EmployeePatientDepartments = new HashSet<EmployeePatientDepartment>();
-            this.Measurements = new HashSet<Measurement>();
+            this.EmployeePatientDepartments = new HashSet<EmployeePatientDepartments>();
         }
     
-        public System.Guid PatientID { get; set; }
-        public string PatientName { get; set; }
-        public string PatientCPR { get; set; }
+        public System.Guid EmployeeID { get; set; }
+        public string EmployeeName { get; set; }
+        public string EmployeeAddress { get; set; }
+        public int EmployeePhoneNumber { get; set; }
+        public System.Guid JobTypeID { get; set; }
+        public System.Guid ThesisID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmployeePatientDepartment> EmployeePatientDepartments { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Measurement> Measurements { get; set; }
+        public virtual ICollection<EmployeePatientDepartments> EmployeePatientDepartments { get; set; }
+        public virtual JobTypes JobTypes { get; set; }
+        public virtual Thesises Thesises { get; set; }
     }
 }

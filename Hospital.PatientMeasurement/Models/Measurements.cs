@@ -12,7 +12,7 @@ namespace Hospital.PatientMeasurement.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Measurement
+    public partial class Measurements
     {
         public System.Guid MeasurementID { get; set; }
         public System.DateTime MeasurementTime { get; set; }
@@ -20,7 +20,7 @@ namespace Hospital.PatientMeasurement.Models
         public System.Guid PatientID { get; set; }
         public System.Guid MeasurementTypeID { get; set; }
     
-        public virtual MeasurementType MeasurementType { get; set; }
-        public virtual Patient Patient { get; set; }
+        public virtual MeasurementTypes MeasurementTypes { get; set; }
+        public virtual Patients Patients { get; set; }
     }
 }

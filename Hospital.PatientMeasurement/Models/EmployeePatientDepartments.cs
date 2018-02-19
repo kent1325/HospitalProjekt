@@ -12,18 +12,15 @@ namespace Hospital.PatientMeasurement.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Department
+    public partial class EmployeePatientDepartments
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Department()
-        {
-            this.EmployeePatientDepartments = new HashSet<EmployeePatientDepartment>();
-        }
-    
+        public System.Guid EmployeePatientDepartmentID { get; set; }
+        public System.Guid EmployeeID { get; set; }
+        public System.Guid PatientID { get; set; }
         public System.Guid DepartmentID { get; set; }
-        public string DepartmentName { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmployeePatientDepartment> EmployeePatientDepartments { get; set; }
+        public virtual Departments Departments { get; set; }
+        public virtual Employees Employees { get; set; }
+        public virtual Patients Patients { get; set; }
     }
 }

@@ -25,13 +25,13 @@ namespace Hospital.PatientMeasurement.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Department> Departments { get; set; }
-        public virtual DbSet<EmployeePatientDepartment> EmployeePatientDepartments { get; set; }
-        public virtual DbSet<Employee> Employees { get; set; }
-        public virtual DbSet<JobType> JobTypes { get; set; }
-        public virtual DbSet<Measurement> Measurements { get; set; }
-        public virtual DbSet<MeasurementType> MeasurementTypes { get; set; }
-        public virtual DbSet<Patient> Patients { get; set; }
-        public virtual DbSet<Thesis> Thesises { get; set; }
+        public virtual DbSet<Departments> Departments { get; set; }
+        public virtual DbSet<EmployeePatientDepartments> EmployeePatientDepartments { get; set; }
+        public virtual DbSet<Employees> Employees { get; set; }
+        public virtual DbSet<JobTypes> JobTypes { get; set; }
+        public virtual DbSet<Measurements> Measurements { get; set; }
+        public virtual DbSet<MeasurementTypes> MeasurementTypes { get; set; }
+        public virtual DbSet<Patients> Patients { get; set; }
+        public virtual DbSet<Thesises> Thesises { get; set; }
     }
 }

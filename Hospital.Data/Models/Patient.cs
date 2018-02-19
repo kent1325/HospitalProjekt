@@ -27,6 +27,18 @@ namespace Hospital.Data.Models
         [RegularExpression("\\d{6}-\\d{4}", ErrorMessage = "{0} must be formatted correctly (012345-6789")]
         public string PatientCPR { get; set; }
 
+        [Required(ErrorMessage = "{0} is a required field")]
+        [DataType(DataType.EmailAddress)]
+        public string PatientEmail { get; set; }
+
+        [Required(ErrorMessage = "{0} is a required field")]
+        [DataType(DataType.Text)]
+        public string PatientAddress { get; set; }
+
+        [Required(ErrorMessage = "{0} is a required field")]
+        [DataType(DataType.PostalCode)]
+        public int PatientPostalCode { get; set; }
+
         public virtual ICollection<EmployeePatientDepartment> EmployeePatientDepartments { get; set; }
 
         public virtual ICollection<Measurement> Measurements { get; set; }
