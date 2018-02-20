@@ -9,9 +9,9 @@
         <EntityTypeShape EntityType="HospitalDatabaseModel.EmployeePatientDepartments" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="HospitalDatabaseModel.Employees" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="HospitalDatabaseModel.JobTypes" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalDatabaseModel.Measurements" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalDatabaseModel.MeasurementTypes" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalDatabaseModel.Patients" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDatabaseModel.Measurements" Width="1.5" PointX="9.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDatabaseModel.MeasurementTypes" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDatabaseModel.Patients" Width="1.5" PointX="7.125" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="HospitalDatabaseModel.Thesises" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
         <AssociationConnector Association="HospitalDatabaseModel.FK_dbo_EmployeePatientDepartments_dbo_Departments_DepartmentID" ManuallyRouted="false" />
         <AssociationConnector Association="HospitalDatabaseModel.FK_dbo_EmployeePatientDepartments_dbo_Employees_EmployeeID" ManuallyRouted="false" />

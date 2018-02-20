@@ -7,6 +7,35 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <DataGrid x:Name="patient_dataGrid" SelectionMode="Extended" SelectionUnit="FullRow" CanUserSortColumns="True" CanUserReorderColumns="False" 
+                  CanUserResizeColumns="False" CanUserResizeRows="False" AlternatingRowBackground="Gainsboro" HorizontalScrollBarVisibility="Auto"
+                  VerticalScrollBarVisibility="Visible" AlternationCount="2" HeadersVisibility="All" CanUserAddRows="False" 
+                  EnableRowVirtualization="False" AutoGenerateColumns="False" CanUserDeleteRows="False" Margin="0,41,0.4,-0.2" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Navn" Binding="{Binding PatientName}" Width="*" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="CPR" Binding="{Binding PatientCPR}" Width="*" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Email" Binding="{Binding PatientEmail}" Width="*" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Adresse" Binding="{Binding PatientAddress}" Width="*" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Post Nr." Binding="{Binding PatientPostalCode}" Width="*" IsReadOnly="True"></DataGridTextColumn>
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem x:Name="patientEdit_menuItem" Header="Rediger Patient" Cursor="Hand" Click="patientEdit_menuItem_Click" >
+                        <MenuItem.Icon>
+                            <Image />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="patientDelete_menuItem" Header="Slet Patient" Cursor="Hand" Click="patientDelete_menuItem_Click" >
+                        <MenuItem.Icon>
+                            <Image />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+        <TextBox x:Name="txtBox_Search" HorizontalAlignment="Left" Height="23" Margin="49,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Søg:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="patientAdd_Btn" Content="Tilføj Patient" HorizontalAlignment="Left" Margin="389,10,0,0" VerticalAlignment="Top" Width="119" Height="23" Click="patientAdd_Btn_Click"/>
+
     </Grid>
 </Window>
