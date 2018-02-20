@@ -12,18 +12,18 @@ namespace Hospital.PatientMeasurement.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MeasurementType
+    public partial class MeasurementTypes
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MeasurementType()
+        public MeasurementTypes()
         {
-            this.Measurements = new HashSet<Measurement>();
+            this.Measurements = new HashSet<Measurements>();
         }
     
         public System.Guid MeasurementTypeID { get; set; }
         public string MeasurementTypeName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Measurement> Measurements { get; set; }
+        public virtual ICollection<Measurements> Measurements { get; set; }
     }
 }

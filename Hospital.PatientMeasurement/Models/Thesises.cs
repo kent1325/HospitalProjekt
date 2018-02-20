@@ -12,18 +12,18 @@ namespace Hospital.PatientMeasurement.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class JobType
+    public partial class Thesises
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public JobType()
+        public Thesises()
         {
-            this.Employees = new HashSet<Employee>();
+            this.Employees = new HashSet<Employees>();
         }
     
-        public System.Guid JobTypeID { get; set; }
-        public string JobTypeTitle { get; set; }
+        public System.Guid ThesisID { get; set; }
+        public string ThesisTitle { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<Employees> Employees { get; set; }
     }
 }

@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f013749ddb65446c8d96700c77a5b2ba" Name="Diagram1">
-        <EntityTypeShape EntityType="HospitalDatabaseModel.Department" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalDatabaseModel.EmployeePatientDepartment" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalDatabaseModel.Employee" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalDatabaseModel.JobType" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalDatabaseModel.Measurement" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalDatabaseModel.MeasurementType" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalDatabaseModel.Patient" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="HospitalDatabaseModel.Thesis" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+      <Diagram DiagramId="0f2dd14203a7446ea7a5531adf50dc51" Name="Diagram1">
+        <EntityTypeShape EntityType="HospitalDatabaseModel.Departments" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDatabaseModel.EmployeePatientDepartments" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDatabaseModel.Employees" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDatabaseModel.JobTypes" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDatabaseModel.Measurements" Width="1.5" PointX="9.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDatabaseModel.MeasurementTypes" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDatabaseModel.Patients" Width="1.5" PointX="7.125" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDatabaseModel.Thesises" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
         <AssociationConnector Association="HospitalDatabaseModel.FK_dbo_EmployeePatientDepartments_dbo_Departments_DepartmentID" ManuallyRouted="false" />
         <AssociationConnector Association="HospitalDatabaseModel.FK_dbo_EmployeePatientDepartments_dbo_Employees_EmployeeID" ManuallyRouted="false" />
         <AssociationConnector Association="HospitalDatabaseModel.FK_dbo_EmployeePatientDepartments_dbo_Patients_PatientID" ManuallyRouted="false" />

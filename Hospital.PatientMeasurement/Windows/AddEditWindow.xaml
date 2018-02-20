@@ -1,0 +1,24 @@
+﻿<Window x:Class="Hospital.PatientMeasurement.Windows.AddEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hospital.PatientMeasurement.Windows"
+        mc:Ignorable="d"
+        Title="AddEditWindow" Height="240" Width="250">
+    <Grid>
+        <Label Content="Patient Navn:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Patient CPR:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <Label Content="Patient Email:" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+        <Label Content="Patient Address:" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
+        <Label Content="Patient Post Nr:" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="patientName_textbox" HorizontalAlignment="Left" Height="23" Margin="110,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="patientCPR_textbox" HorizontalAlignment="Left" Height="23" Margin="110,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="patientmail_textbox" HorizontalAlignment="Left" Height="23" Margin="110,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="patientAdress" HorizontalAlignment="Left" Height="23" Margin="110,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="110,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="addEdit_btn" Content="" HorizontalAlignment="Left" Margin="10,174,0,0" VerticalAlignment="Top" Width="102" Height="26" RenderTransformOrigin="0.244,0.636"/>
+        <Button x:Name="aeCancel_btn" Content="Annuler" HorizontalAlignment="Left" Margin="129,174,0,0" VerticalAlignment="Top" Width="101" Height="26"/>
+
+    </Grid>
+</Window>

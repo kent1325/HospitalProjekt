@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HospitalDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="HospitalDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Departments">
           <Key>
             <PropertyRef Name="DepartmentID" />
@@ -63,6 +63,9 @@
           <Property Name="PatientID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="PatientName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PatientCPR" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="PatientEmail" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PatientAddress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PatientPostalCode" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Thesises">
           <Key>
@@ -207,12 +210,11 @@
             <End Role="Measurements" EntitySet="Measurements" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HospitalDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Department">
+        <EntityType Name="Departments">
           <Key>
             <PropertyRef Name="DepartmentID" />
           </Key>
@@ -220,7 +222,7 @@
           <Property Name="DepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="EmployeePatientDepartments" Relationship="Self.FK_dbo_EmployeePatientDepartments_dbo_Departments_DepartmentID" FromRole="Departments" ToRole="EmployeePatientDepartments" />
         </EntityType>
-        <EntityType Name="EmployeePatientDepartment">
+        <EntityType Name="EmployeePatientDepartments">
           <Key>
             <PropertyRef Name="EmployeePatientDepartmentID" />
           </Key>
@@ -228,11 +230,11 @@
           <Property Name="EmployeeID" Type="Guid" Nullable="false" />
           <Property Name="PatientID" Type="Guid" Nullable="false" />
           <Property Name="DepartmentID" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="Department" Relationship="Self.FK_dbo_EmployeePatientDepartments_dbo_Departments_DepartmentID" FromRole="EmployeePatientDepartments" ToRole="Departments" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_dbo_EmployeePatientDepartments_dbo_Employees_EmployeeID" FromRole="EmployeePatientDepartments" ToRole="Employees" />
-          <NavigationProperty Name="Patient" Relationship="Self.FK_dbo_EmployeePatientDepartments_dbo_Patients_PatientID" FromRole="EmployeePatientDepartments" ToRole="Patients" />
+          <NavigationProperty Name="Departments" Relationship="Self.FK_dbo_EmployeePatientDepartments_dbo_Departments_DepartmentID" FromRole="EmployeePatientDepartments" ToRole="Departments" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_dbo_EmployeePatientDepartments_dbo_Employees_EmployeeID" FromRole="EmployeePatientDepartments" ToRole="Employees" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK_dbo_EmployeePatientDepartments_dbo_Patients_PatientID" FromRole="EmployeePatientDepartments" ToRole="Patients" />
         </EntityType>
-        <EntityType Name="Employee">
+        <EntityType Name="Employees">
           <Key>
             <PropertyRef Name="EmployeeID" />
           </Key>
@@ -243,10 +245,10 @@
           <Property Name="JobTypeID" Type="Guid" Nullable="false" />
           <Property Name="ThesisID" Type="Guid" Nullable="false" />
           <NavigationProperty Name="EmployeePatientDepartments" Relationship="Self.FK_dbo_EmployeePatientDepartments_dbo_Employees_EmployeeID" FromRole="Employees" ToRole="EmployeePatientDepartments" />
-          <NavigationProperty Name="JobType" Relationship="Self.FK_dbo_Employees_dbo_JobTypes_JobTypeID" FromRole="Employees" ToRole="JobTypes" />
-          <NavigationProperty Name="Thesis" Relationship="Self.FK_dbo_Employees_dbo_Thesises_ThesisID" FromRole="Employees" ToRole="Thesises" />
+          <NavigationProperty Name="JobTypes" Relationship="Self.FK_dbo_Employees_dbo_JobTypes_JobTypeID" FromRole="Employees" ToRole="JobTypes" />
+          <NavigationProperty Name="Thesises" Relationship="Self.FK_dbo_Employees_dbo_Thesises_ThesisID" FromRole="Employees" ToRole="Thesises" />
         </EntityType>
-        <EntityType Name="JobType">
+        <EntityType Name="JobTypes">
           <Key>
             <PropertyRef Name="JobTypeID" />
           </Key>
@@ -254,7 +256,7 @@
           <Property Name="JobTypeTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Employees" Relationship="Self.FK_dbo_Employees_dbo_JobTypes_JobTypeID" FromRole="JobTypes" ToRole="Employees" />
         </EntityType>
-        <EntityType Name="Measurement">
+        <EntityType Name="Measurements">
           <Key>
             <PropertyRef Name="MeasurementID" />
           </Key>
@@ -263,10 +265,10 @@
           <Property Name="MeasurementValue" Type="Double" Nullable="false" />
           <Property Name="PatientID" Type="Guid" Nullable="false" />
           <Property Name="MeasurementTypeID" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="MeasurementType" Relationship="Self.FK_dbo_Measurements_dbo_MeasurementTypes_MeasurementTypeID" FromRole="Measurements" ToRole="MeasurementTypes" />
-          <NavigationProperty Name="Patient" Relationship="Self.FK_dbo_Measurements_dbo_Patients_PatientID" FromRole="Measurements" ToRole="Patients" />
+          <NavigationProperty Name="MeasurementTypes" Relationship="Self.FK_dbo_Measurements_dbo_MeasurementTypes_MeasurementTypeID" FromRole="Measurements" ToRole="MeasurementTypes" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK_dbo_Measurements_dbo_Patients_PatientID" FromRole="Measurements" ToRole="Patients" />
         </EntityType>
-        <EntityType Name="MeasurementType">
+        <EntityType Name="MeasurementTypes">
           <Key>
             <PropertyRef Name="MeasurementTypeID" />
           </Key>
@@ -274,7 +276,7 @@
           <Property Name="MeasurementTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Measurements" Relationship="Self.FK_dbo_Measurements_dbo_MeasurementTypes_MeasurementTypeID" FromRole="MeasurementTypes" ToRole="Measurements" />
         </EntityType>
-        <EntityType Name="Patient">
+        <EntityType Name="Patients">
           <Key>
             <PropertyRef Name="PatientID" />
           </Key>
@@ -283,8 +285,11 @@
           <Property Name="PatientCPR" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="EmployeePatientDepartments" Relationship="Self.FK_dbo_EmployeePatientDepartments_dbo_Patients_PatientID" FromRole="Patients" ToRole="EmployeePatientDepartments" />
           <NavigationProperty Name="Measurements" Relationship="Self.FK_dbo_Measurements_dbo_Patients_PatientID" FromRole="Patients" ToRole="Measurements" />
+          <Property Name="PatientEmail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PatientAddress" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PatientPostalCode" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="Thesis">
+        <EntityType Name="Thesises">
           <Key>
             <PropertyRef Name="ThesisID" />
           </Key>
@@ -293,10 +298,10 @@
           <NavigationProperty Name="Employees" Relationship="Self.FK_dbo_Employees_dbo_Thesises_ThesisID" FromRole="Thesises" ToRole="Employees" />
         </EntityType>
         <Association Name="FK_dbo_EmployeePatientDepartments_dbo_Departments_DepartmentID">
-          <End Role="Departments" Type="Self.Department" Multiplicity="1">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="EmployeePatientDepartments" Type="Self.EmployeePatientDepartment" Multiplicity="*" />
+          <End Role="EmployeePatientDepartments" Type="Self.EmployeePatientDepartments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Departments">
               <PropertyRef Name="DepartmentID" />
@@ -307,10 +312,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_EmployeePatientDepartments_dbo_Employees_EmployeeID">
-          <End Role="Employees" Type="Self.Employee" Multiplicity="1">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="EmployeePatientDepartments" Type="Self.EmployeePatientDepartment" Multiplicity="*" />
+          <End Role="EmployeePatientDepartments" Type="Self.EmployeePatientDepartments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employees">
               <PropertyRef Name="EmployeeID" />
@@ -321,10 +326,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_EmployeePatientDepartments_dbo_Patients_PatientID">
-          <End Role="Patients" Type="Self.Patient" Multiplicity="1">
+          <End Role="Patients" Type="Self.Patients" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="EmployeePatientDepartments" Type="Self.EmployeePatientDepartment" Multiplicity="*" />
+          <End Role="EmployeePatientDepartments" Type="Self.EmployeePatientDepartments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Patients">
               <PropertyRef Name="PatientID" />
@@ -335,10 +340,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Employees_dbo_JobTypes_JobTypeID">
-          <End Role="JobTypes" Type="Self.JobType" Multiplicity="1">
+          <End Role="JobTypes" Type="Self.JobTypes" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="JobTypes">
               <PropertyRef Name="JobTypeID" />
@@ -349,10 +354,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Employees_dbo_Thesises_ThesisID">
-          <End Role="Thesises" Type="Self.Thesis" Multiplicity="1">
+          <End Role="Thesises" Type="Self.Thesises" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Thesises">
               <PropertyRef Name="ThesisID" />
@@ -363,10 +368,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Measurements_dbo_MeasurementTypes_MeasurementTypeID">
-          <End Role="MeasurementTypes" Type="Self.MeasurementType" Multiplicity="1">
+          <End Role="MeasurementTypes" Type="Self.MeasurementTypes" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Measurements" Type="Self.Measurement" Multiplicity="*" />
+          <End Role="Measurements" Type="Self.Measurements" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MeasurementTypes">
               <PropertyRef Name="MeasurementTypeID" />
@@ -377,10 +382,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Measurements_dbo_Patients_PatientID">
-          <End Role="Patients" Type="Self.Patient" Multiplicity="1">
+          <End Role="Patients" Type="Self.Patients" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Measurements" Type="Self.Measurement" Multiplicity="*" />
+          <End Role="Measurements" Type="Self.Measurements" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Patients">
               <PropertyRef Name="PatientID" />
@@ -391,14 +396,14 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="HospitalDatabase" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Departments" EntityType="Self.Department" />
-          <EntitySet Name="EmployeePatientDepartments" EntityType="Self.EmployeePatientDepartment" />
-          <EntitySet Name="Employees" EntityType="Self.Employee" />
-          <EntitySet Name="JobTypes" EntityType="Self.JobType" />
-          <EntitySet Name="Measurements" EntityType="Self.Measurement" />
-          <EntitySet Name="MeasurementTypes" EntityType="Self.MeasurementType" />
-          <EntitySet Name="Patients" EntityType="Self.Patient" />
-          <EntitySet Name="Thesises" EntityType="Self.Thesis" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" />
+          <EntitySet Name="EmployeePatientDepartments" EntityType="Self.EmployeePatientDepartments" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" />
+          <EntitySet Name="JobTypes" EntityType="Self.JobTypes" />
+          <EntitySet Name="Measurements" EntityType="Self.Measurements" />
+          <EntitySet Name="MeasurementTypes" EntityType="Self.MeasurementTypes" />
+          <EntitySet Name="Patients" EntityType="Self.Patients" />
+          <EntitySet Name="Thesises" EntityType="Self.Thesises" />
           <AssociationSet Name="FK_dbo_EmployeePatientDepartments_dbo_Departments_DepartmentID" Association="Self.FK_dbo_EmployeePatientDepartments_dbo_Departments_DepartmentID">
             <End Role="Departments" EntitySet="Departments" />
             <End Role="EmployeePatientDepartments" EntitySet="EmployeePatientDepartments" />
@@ -435,7 +440,7 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="HospitalDatabaseModelStoreContainer" CdmEntityContainer="HospitalDatabase">
           <EntitySetMapping Name="Departments">
-            <EntityTypeMapping TypeName="HospitalDatabaseModel.Department">
+            <EntityTypeMapping TypeName="HospitalDatabaseModel.Departments">
               <MappingFragment StoreEntitySet="Departments">
                 <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
                 <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
@@ -443,7 +448,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EmployeePatientDepartments">
-            <EntityTypeMapping TypeName="HospitalDatabaseModel.EmployeePatientDepartment">
+            <EntityTypeMapping TypeName="HospitalDatabaseModel.EmployeePatientDepartments">
               <MappingFragment StoreEntitySet="EmployeePatientDepartments">
                 <ScalarProperty Name="EmployeePatientDepartmentID" ColumnName="EmployeePatientDepartmentID" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
@@ -453,7 +458,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="HospitalDatabaseModel.Employee">
+            <EntityTypeMapping TypeName="HospitalDatabaseModel.Employees">
               <MappingFragment StoreEntitySet="Employees">
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
@@ -465,7 +470,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="JobTypes">
-            <EntityTypeMapping TypeName="HospitalDatabaseModel.JobType">
+            <EntityTypeMapping TypeName="HospitalDatabaseModel.JobTypes">
               <MappingFragment StoreEntitySet="JobTypes">
                 <ScalarProperty Name="JobTypeID" ColumnName="JobTypeID" />
                 <ScalarProperty Name="JobTypeTitle" ColumnName="JobTypeTitle" />
@@ -473,7 +478,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Measurements">
-            <EntityTypeMapping TypeName="HospitalDatabaseModel.Measurement">
+            <EntityTypeMapping TypeName="HospitalDatabaseModel.Measurements">
               <MappingFragment StoreEntitySet="Measurements">
                 <ScalarProperty Name="MeasurementID" ColumnName="MeasurementID" />
                 <ScalarProperty Name="MeasurementTime" ColumnName="MeasurementTime" />
@@ -484,7 +489,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MeasurementTypes">
-            <EntityTypeMapping TypeName="HospitalDatabaseModel.MeasurementType">
+            <EntityTypeMapping TypeName="HospitalDatabaseModel.MeasurementTypes">
               <MappingFragment StoreEntitySet="MeasurementTypes">
                 <ScalarProperty Name="MeasurementTypeID" ColumnName="MeasurementTypeID" />
                 <ScalarProperty Name="MeasurementTypeName" ColumnName="MeasurementTypeName" />
@@ -492,8 +497,11 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Patients">
-            <EntityTypeMapping TypeName="HospitalDatabaseModel.Patient">
+            <EntityTypeMapping TypeName="HospitalDatabaseModel.Patients">
               <MappingFragment StoreEntitySet="Patients">
+                <ScalarProperty Name="PatientPostalCode" ColumnName="PatientPostalCode" />
+                <ScalarProperty Name="PatientAddress" ColumnName="PatientAddress" />
+                <ScalarProperty Name="PatientEmail" ColumnName="PatientEmail" />
                 <ScalarProperty Name="PatientID" ColumnName="PatientID" />
                 <ScalarProperty Name="PatientName" ColumnName="PatientName" />
                 <ScalarProperty Name="PatientCPR" ColumnName="PatientCPR" />
@@ -501,7 +509,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Thesises">
-            <EntityTypeMapping TypeName="HospitalDatabaseModel.Thesis">
+            <EntityTypeMapping TypeName="HospitalDatabaseModel.Thesises">
               <MappingFragment StoreEntitySet="Thesises">
                 <ScalarProperty Name="ThesisID" ColumnName="ThesisID" />
                 <ScalarProperty Name="ThesisTitle" ColumnName="ThesisTitle" />
@@ -522,7 +530,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
