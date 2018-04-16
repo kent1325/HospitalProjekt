@@ -25,13 +25,13 @@ namespace Hospital.Data.Models
         [DataType(DataType.Text)]
         [StringLength(maximumLength: 50, MinimumLength = 1,
             ErrorMessage = "The property {0} should have {1} maximum characters and {2} minimum characters")]
-        [RegularExpression("^((?!^Address$)[0-9A-Za-z #.,])+$", ErrorMessage = "{0} must be properly formatted.")]
+        [RegularExpression(@"^[^ ,.\-\n\r\t!""#¤%&\/()=?`@£${[\]}\\^*_:;><½§~](.{1,})$", ErrorMessage = "{0} must be properly formatted.")]
         public string EmployeeAddress { get; set; }
 
         [Required(ErrorMessage = "{0} is a required field")]
-        [DataType(DataType.PhoneNumber)]
-        [Phone]
-        public int EmployeePhoneNumber { get; set; }
+        [DataType(DataType.Text)]
+        [RegularExpression(@"^(\d{2})[- ]?(\d{2})[- ]?(\d{2})[- ]?(\d{2})$", ErrorMessage = "{0} must be properly formatted.")]
+        public string EmployeePhoneNumber { get; set; }
 
         public Guid JobTypeID { get; set; }
         [ForeignKey("JobTypeID")]

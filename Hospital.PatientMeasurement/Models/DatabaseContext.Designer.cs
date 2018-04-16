@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Kent\source\repos\Hospital\Hospital.PatientMeasurement\Models\DatabaseContext.edmx'. 
+﻿// T4 code generation is enabled for model 'S:\Visual Studio Enterprise\Projects\Test Projects\HospitalProjekt\Hospital.PatientMeasurement\Models\DatabaseContext.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
