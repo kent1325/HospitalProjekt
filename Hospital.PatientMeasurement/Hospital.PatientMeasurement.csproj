@@ -77,45 +77,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\DatabaseContext.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DatabaseContext.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DatabaseContext.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DatabaseContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DatabaseContext.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DatabaseContext.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Department.cs">
-      <DependentUpon>DatabaseContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Employee.cs">
-      <DependentUpon>DatabaseContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EmployeePatientDepartment.cs">
-      <DependentUpon>DatabaseContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\JobType.cs">
-      <DependentUpon>DatabaseContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Measurement.cs">
-      <DependentUpon>DatabaseContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MeasurementType.cs">
-      <DependentUpon>DatabaseContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Patient.cs">
-      <DependentUpon>DatabaseContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Thesis.cs">
-      <DependentUpon>DatabaseContext.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -134,13 +95,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="App.Config" />
-    <EntityDeploy Include="Models\DatabaseContext.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DatabaseContext.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Models\DatabaseContext.edmx.diagram">
-      <DependentUpon>DatabaseContext.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -155,18 +109,6 @@
       <Project>{ca7df048-5e6c-4471-9618-fbd1f39d23de}</Project>
       <Name>Hospital.Data</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Models\DatabaseContext.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DatabaseContext.edmx</DependentUpon>
-      <LastGenOutput>DatabaseContext.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\DatabaseContext.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DatabaseContext.edmx</DependentUpon>
-      <LastGenOutput>DatabaseContext.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
